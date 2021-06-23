@@ -44,12 +44,6 @@ const checkLocalStorage = () => {
     }
 }
 
-// const removeFromLibrary = (index) => {
-//     myLibrary.splice(index, 1)
-//     newButton.removeEventListener('click', removeFromLibrary);
-//     updateTable();
-// }
-
 const clearForm = () => {
     authorInput.value = '';
     titleInput.value = '';
@@ -58,8 +52,8 @@ const clearForm = () => {
 
 const createDeleteTd = (index) => {
     let deleteTd = document.createElement('td');
-    let deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    const deleteButton = document.createElement('tr');
+    deleteButton.innerHTML = `<td><a href="#" class="btn btn-danger btn-sm delete">Delete</a></td>`
     deleteButton.addEventListener('click', () => {
         myLibrary.splice(index, 1);
         updateTable();

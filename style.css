@@ -1,4 +1,5 @@
-input:focus, input:active {
+input:focus,
+input:active {
     outline: none !important;
     box-shadow: none !important;
 }
@@ -30,7 +31,7 @@ label {
 }
 
 .app-span {
-    color: #008cba;   
+    color: #008cba;
 }
 
 h1.display-4 {
@@ -39,4 +40,18 @@ h1.display-4 {
 
 .form-check-input:checked {
     background-color: #008cba !important;
+}
+
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+    line-height: 2.5rem;
+}
+
+.btn-danger {
+    vertical-align: unset !important;
 }
