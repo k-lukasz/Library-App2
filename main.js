@@ -39,7 +39,9 @@ const updateLocalStorage = () => {
 }
 
 const checkLocalStorage = () => {
-    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    if (localStorage.getItem('myLibrary')) {
+        myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    }
 }
 
 const removeFromLibrary = (index) => {
