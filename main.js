@@ -44,11 +44,11 @@ const checkLocalStorage = () => {
     }
 }
 
-const removeFromLibrary = (index) => {
-    myLibrary.splice(index, 1)
-    newButton.removeEventListener('click', removeFromLibrary);
-    updateTable();
-}
+// const removeFromLibrary = (index) => {
+//     myLibrary.splice(index, 1)
+//     newButton.removeEventListener('click', removeFromLibrary);
+//     updateTable();
+// }
 
 const clearForm = () => {
     authorInput.value = '';
