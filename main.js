@@ -2,7 +2,7 @@ let myLibrary = [{
     author: "George R. R. Martin",
     title: "A Game of Thrones",
     pages: 694,
-    // read: false
+    read: true
 }];
 
 // DOM Objects
@@ -11,27 +11,38 @@ const table = document.querySelector('#table');
 const tbody = document.querySelector('#table tbody');
 
 const form = document.querySelector('#book-form');
-let authorInput = document.querySelector('#author');
-let titleInput = document.querySelector('#title');
-let pagesInput = document.querySelector('#pages');
-// readInput = document.querySelector('#read');
+const authorInput = document.querySelector('#author');
+const titleInput = document.querySelector('#title');
+const pagesInput = document.querySelector('#pages');
+const readInput = document.querySelector('#read');
 
 class Book {
-    constructor(author, title, pages) {
+    constructor(author, title, pages, read) {
         this.author = author;
         this.title = title;
         this.pages = pages;
-        // this.read = read;
+        this.read = read;
     }
 }
 
 const addBookToLibrary = () => {
-    let author = authorInput.value;
-    let title = titleInput.value;
-    let pages = pagesInput.value;
-    // let read = getReadValue();
-    let newBook = new Book(author, title, pages);
+    const author = authorInput.value;
+    const title = titleInput.value;
+    const pages = pagesInput.value;
+    // const read = readInput.checked;
+    const read = readStatus();
+    const newBook = new Book(author, title, pages, read);
     myLibrary.push(newBook);
+}
+
+const readStatus = () => {
+    if (readInput.checked === true) {
+        console.log('checked');
+        return true;
+    } else {
+        console.log('not checked');
+        return false;
+    }
 }
 
 const updateLocalStorage = () => {
@@ -48,10 +59,11 @@ const clearForm = () => {
     authorInput.value = '';
     titleInput.value = '';
     pagesInput.value = '';
+    readInput.checked = '';
 }
 
 const createDeleteTd = (index) => {
-    let deleteTd = document.createElement('td');
+    const deleteTd = document.createElement('td');
     const deleteButton = document.createElement('tr');
     deleteButton.innerHTML = `<td><a href="#" class="btn btn-danger btn-sm delete">Delete</a></td>`
     deleteButton.addEventListener('click', () => {
@@ -66,9 +78,9 @@ const updateTable = () => {
     tbody.textContent = '';
 
     myLibrary.forEach((book, index) => {
-        let row = document.createElement('tr');
+        const row = document.createElement('tr');
         Object.keys(book).forEach(property => {
-            let newTd = document.createElement('td');
+            const newTd = document.createElement('td');
             newTd.textContent = book[property];
             row.appendChild(newTd);
         });
