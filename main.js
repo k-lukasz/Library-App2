@@ -29,20 +29,9 @@ const addBookToLibrary = () => {
     const author = authorInput.value;
     const title = titleInput.value;
     const pages = pagesInput.value;
-    // const read = readInput.checked;
-    const read = readStatus();
+    const read = readInput.checked;
     const newBook = new Book(author, title, pages, read);
     myLibrary.push(newBook);
-}
-
-const readStatus = () => {
-    if (readInput.checked === true) {
-        console.log('checked');
-        return true;
-    } else {
-        console.log('not checked');
-        return false;
-    }
 }
 
 const updateLocalStorage = () => {
@@ -74,16 +63,42 @@ const createDeleteTd = (index) => {
     return deleteTd;
 }
 
+const createReadTd = (index) => {
+    const readTd = document.createElement('td');
+    const readButton = document.createElement('tr');
+    if (myLibrary[index].read === true) {
+        readButton.innerHTML =
+            `
+        <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+        </div>
+        `
+    } else {
+        readButton.innerHTML = `
+        <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox">
+        </div>
+        `;
+    }
+    readButton.addEventListener('click', () => {
+        myLibrary[index];
+        updateTable();
+    });
+    readTd.appendChild(readButton);
+    return readTd;
+}
+
 const updateTable = () => {
     tbody.textContent = '';
-
     myLibrary.forEach((book, index) => {
         const row = document.createElement('tr');
-        Object.keys(book).forEach(property => {
-            const newTd = document.createElement('td');
-            newTd.textContent = book[property];
-            row.appendChild(newTd);
-        });
+        row.innerHTML =
+            `
+                <td>${book.author}</td>
+                <td>${book.title}</td>
+                <td>${book.pages}</td>
+                `
+        row.appendChild(createReadTd(index));
         row.appendChild(createDeleteTd(index));
         tbody.appendChild(row);
     });
