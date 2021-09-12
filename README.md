@@ -3,4 +3,4 @@ completely redesigned version of the previous library-app so it's easier to sync
 
 vanilla js + boostrap + basic css
 
-Live -> https://k-lukasz.github.io/Library-App2/
+> - [live demo](https://k-lukasz.github.io/Library-App2/)
